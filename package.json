@@ -1,0 +1,33 @@
+{
+  "name": "hierarchical-router",
+  "version": "0.0.0",
+  "author": "Markus Ast <npm.m@rkusa.st>",
+  "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/rkusa/hierarchical-router",
+  "bugs": "https://github.com/rkusa/hierarchical-router/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/rkusa/hierarchical-router.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10"
+  },
+  "main": "./lib",
+  "scripts": {
+    "test": "node --harmony `which gulp`"
+  },
+  "dependencies": {
+    "route-recognizer": "^0.1.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.6.2",
+    "mocha": "^1.18.2",
+    "co-mocha": "^0.0.2",
+    "gulp-mocha": "git://github.com/helderroem/gulp-mocha#mocha.opts",
+    "chai": "^1.9.1",
+    "gulp-jshint": "^1.5.5",
+    "jshint-stylish": "^0.2.0"
+  }
+}

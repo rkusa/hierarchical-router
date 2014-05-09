@@ -19,6 +19,9 @@
     "test": "node --harmony `which gulp`"
   },
   "dependencies": {
+    "co": "^3.0.6",
+    "debug": "^0.8.1",
+    "qs": "^0.6.6",
     "route-recognizer": "^0.1.0"
   },
   "devDependencies": {
@@ -29,5 +32,8 @@
     "chai": "^1.9.1",
     "gulp-jshint": "^1.5.5",
     "jshint-stylish": "^0.2.0"
+  },
+  "browser": {
+    "./context.server": false
   }
 }

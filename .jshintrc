@@ -9,6 +9,7 @@
   "laxcomma": true,
   "laxbreak": true,
    "-W058": true,
+   "-W030": true,
   "browser": true,
   "node": true,
   "jquery": true,

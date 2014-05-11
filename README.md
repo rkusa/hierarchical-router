@@ -4,6 +4,9 @@
 [![Build Status](https://secure.travis-ci.org/rkusa/hierarchical-router.svg)](http://travis-ci.org/rkusa/hierarchical-router)
 [![Dependency Status](https://david-dm.org/rkusa/hierarchical-router.svg?theme=shields.io)](https://david-dm.org/rkusa/hierarchical-router)
 
+[![browser support](https://ci.testling.com/rkusa/hierarchical-router.png)
+](https://ci.testling.com/rkusa/hierarchical-router)
+
 ## Route Hierarchy
 
   With `hierarchical-router` routes are defined hierarchically. The resulting route hierarchy is used to determine the necessary parts that have to be executed to reflect changes between two user interactions. The business logic of a route is thereby separated into parts, where each part reflects the changes necessary to move from one route to an immediately following one.

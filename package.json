@@ -12,11 +12,12 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=0.10"
+    "node": ">=0.11"
   },
   "main": "./lib",
   "scripts": {
-    "test": "node --harmony `which gulp`"
+    "test": "node --harmony `which gulp` test",
+    "testling": "testling -x chrome"
   },
   "dependencies": {
     "co": "^3.0.6",
@@ -25,15 +26,28 @@
     "route-recognizer": "^0.1.0"
   },
   "devDependencies": {
-    "gulp": "^3.6.2",
-    "mocha": "^1.18.2",
-    "co-mocha": "^0.0.2",
-    "gulp-mocha": "git://github.com/helderroem/gulp-mocha#mocha.opts",
     "chai": "^1.9.1",
+    "co-mocha": "^0.0.2",
+    "co-supertest": "0.0.4",
+    "gulp": "^3.6.2",
+    "gulp-bg": "0.0.5",
     "gulp-jshint": "^1.5.5",
-    "jshint-stylish": "^0.2.0"
+    "gulp-mocha": "^0.4.1",
+    "gulp-regenerator": "^0.2.0",
+    "jshint-stylish": "^0.2.0",
+    "koa": "^0.6.0",
+    "testling": "^1.6.1"
   },
   "browser": {
     "./context.server": false
+  },
+  "testling": {
+    "harness": "mocha-bdd",
+    "files": "test/client.js",
+    "browsers": [
+      "ie/8..latest",
+      "chrome/latest",
+      "firefox/latest"
+    ]
   }
 }

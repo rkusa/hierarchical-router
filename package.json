@@ -16,8 +16,7 @@
   },
   "main": "./lib",
   "scripts": {
-    "test": "node --harmony `which gulp` test",
-    "testling": "testling -x chrome"
+    "test": "node --harmony `which gulp` test"
   },
   "dependencies": {
     "co": "^3.0.6",
@@ -44,6 +43,7 @@
   "testling": {
     "harness": "mocha-bdd",
     "files": "test/client.js",
+    "preprocess": "./node_modules/.bin/gulp es5",
     "browsers": [
       "ie/8..latest",
       "chrome/latest",

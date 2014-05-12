@@ -28,6 +28,8 @@ gulp.task('es5:tests', function() {
       .pipe(gulp.dest('test/es5/test/app'))
 })
 
+gulp.task('es5', ['es5:libs', 'es5:tests'])
+
 var spawn = require('child_process').spawn
 gulp.task('testling', ['es5:libs', 'es5:tests'], function(done) {
   spawn('./node_modules/testling/bin/cmd.js', ['-x chrome'], { stdio: 'inherit' })

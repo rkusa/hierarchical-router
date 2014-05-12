@@ -55,6 +55,8 @@ module.exports = function(config) {
       recordScreenshots: false
     },
 
+    captureTimeout: 120000,
+
     customLaunchers: customLaunchers
   })
 }

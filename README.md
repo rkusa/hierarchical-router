@@ -4,8 +4,7 @@
 [![Build Status](https://secure.travis-ci.org/rkusa/hierarchical-router.svg)](http://travis-ci.org/rkusa/hierarchical-router)
 [![Dependency Status](https://david-dm.org/rkusa/hierarchical-router.svg?theme=shields.io)](https://david-dm.org/rkusa/hierarchical-router)
 
-[![browser support](https://ci.testling.com/rkusa/hierarchical-router.png)
-](https://ci.testling.com/rkusa/hierarchical-router)
+[![Selenium Test Status](https://saucelabs.com/browser-matrix/hierarchical-router.svg)](https://saucelabs.com/u/hierarchical-router)
 
 ## Route Hierarchy
 

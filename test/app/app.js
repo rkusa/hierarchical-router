@@ -31,7 +31,7 @@ u.get('/d', function*(cont) {
   yield cont
 })
 
-var e = router.get('/e', function*(cont) {
+var e = router.get('/:e', function*(cont) {
   yield cont
 })
 
@@ -39,6 +39,22 @@ e.get('/k', function*(cont) {
   yield cont
 })
 
-e.get('/f', function*(cont) {
+var f = e.get('/:f', function*(cont) {
+  yield cont
+})
+
+f.get('/g', function*(cont) {
+  yield cont
+})
+
+var h = f.get('/:h', function*(cont) {
+  yield cont
+})
+
+h.get('/i', function*(cont) {
+  yield cont
+})
+
+h.get('/j', function*(cont) {
   yield cont
 })

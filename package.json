@@ -16,7 +16,7 @@
   },
   "main": "./lib",
   "scripts": {
-    "test": "node --harmony `which gulp` test"
+    "test": "node --harmony `which gulp`"
   },
   "dependencies": {
     "co": "^3.0.6",

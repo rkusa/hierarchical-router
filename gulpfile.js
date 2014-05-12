@@ -1,6 +1,6 @@
 var gulp = require('gulp')
 
-gulp.task('default', ['lint', 'test'])
+gulp.task('default', ['test', 'saucelabs'])
 
 var mocha = require('gulp-mocha')
 gulp.task('test', function() {
@@ -22,6 +22,7 @@ gulp.task('karma', function() {
     .pipe(karma({
       configFile: 'karma.conf.js',
       browsers: ['Chrome'],
+      reporters: ['story'],
       action: 'run'
     }))
     .on('error', function(err) {
@@ -35,6 +36,7 @@ gulp.task('saucelabs', function() {
     .pipe(karma({
       configFile: 'karma.conf.js',
       browsers: ['sl_chrome', 'sl_firefox', 'sl_ios_safari', 'sl_ie_11'],
+      reporters: ['dots', 'saucelabs'],
       singleRun: true,
       action: 'run'
     }))

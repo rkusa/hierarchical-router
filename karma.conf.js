@@ -48,19 +48,13 @@ module.exports = function(config) {
       }
     },
 
-    reporters: ['story'],
-
     // browsers: ['Chrome'],
 
     sauceLabs: {
       testName: 'hierarchical-router',
-      startConnect: true
+      recordScreenshots: false
     },
 
-    customLaunchers: customLaunchers,
-
-    // Continuous Integration mode
-    // if true, it capture browsers, run tests and exit
-    singleRun: false
+    customLaunchers: customLaunchers
   })
 }

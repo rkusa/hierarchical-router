@@ -35,7 +35,7 @@ gulp.task('saucelabs', function() {
   return gulp.src(['test/client.js'])
     .pipe(karma({
       configFile: 'karma.conf.js',
-      browsers: ['sl_chrome', 'sl_firefox', 'sl_ios_safari', 'sl_ie_11'],
+      browsers: Object.keys(require('./test/browser')),
       reporters: ['dots', 'saucelabs'],
       singleRun: true,
       action: 'run'

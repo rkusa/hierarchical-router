@@ -1,29 +1,14 @@
 module.exports = function(config) {
   config.set({
+    autoWatch: false,
 
     frameworks: ['mocha'],
-
-    preprocessors: {
-      'test/client.js': ['webpack']
-    },
-
-    webpack: {
-      cache: false,
-
-      module: {
-        loaders: [
-          { test: /\.js$/, loader: 'transform?regeneratorify' }
-        ]
-      }
-    },
 
     client: {
       mocha: {
         ui: 'tdd'
       }
     },
-
-    // browsers: ['Chrome'],
 
     sauceLabs: {
       testName: 'hierarchical-router',

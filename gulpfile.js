@@ -16,23 +16,42 @@ gulp.task('lint', function() {
       .pipe(jshint.reporter('fail'))
 })
 
+var source = require('vinyl-source-stream')
+var browserify = require('browserify')
+gulp.task('karma:bundle', function() {
+  var bundle = browserify('./test/client.js')
+  bundle.transform(require('regeneratorify'))
+
+  return bundle.bundle({ debug: true })
+    .pipe(source('client.bundle.js'))
+    .pipe(gulp.dest('./test'))
+})
+
 var karma = require('gulp-karma')
-gulp.task('karma', function() {
-  return gulp.src(['test/client.js'])
+gulp.task('karma:test', ['karma:bundle'], function() {
+  return gulp.src('test/client.bundle.js')
     .pipe(karma({
       configFile: 'karma.conf.js',
-      browsers: ['Chrome'],
+      // browsers: ['Chrome'],
       reporters: ['story'],
       action: 'run'
     }))
-    .on('error', function(err) {
-      // Make sure failed tests cause gulp to exit non-zero
-      throw err;
-    })
+    // .on('error', function(err) {
+    //   // Make sure failed tests cause gulp to exit non-zero
+    //   throw err;
+    // })
 })
 
-gulp.task('saucelabs', function() {
-  return gulp.src(['test/client.js'])
+var clean = require('gulp-clean')
+gulp.task('karma:cleanup', ['karma:test'], function() {
+  return gulp.src('test/client.bundle.js', { read: false })
+    .pipe(clean())
+})
+
+gulp.task('karma', ['karma:bundle', 'karma:test', 'karma:cleanup'])
+
+gulp.task('saucelabs', ['karma:bundle'], function() {
+  return gulp.src('test/client.js')
     .pipe(karma({
       configFile: 'karma.conf.js',
       browsers: Object.keys(require('./test/browser')),

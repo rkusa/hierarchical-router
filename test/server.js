@@ -67,15 +67,36 @@ suite('Server-Side', function() {
     ])
   })
 
+  test('redirect', function*() {
+    router.get('/redirect', function*(cont) {
+      yield cont.redirect('/some/path')
+    })
+
+    yield request(server)
+      .get('/redirect')
+      .expect('Location', '/some/path')
+      .expect(302)
+      .end()
+  })
 })
 
+function requestTo(path, method) {
+  return function*() {
+    yield request(server)
+      .get(path)
+      .expect(200)
+      .end()
+  }
+}
+
+require('./common')(router, requestTo)
+
 var router = require('./app/app')
-var Context = require('../lib/context.client.js')
+var context = require('../lib/context.client.js')
 
 function navigateTo(path, method) {
   return function*() {
-    var context = new Context(method || 'GET', path)
-    var route = router.match(context)
+    var route = router.match(path, method || 'GET', context)
 
     if (route) {
       yield route(context)

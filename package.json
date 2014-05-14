@@ -25,24 +25,25 @@
     "route-recognizer": "^0.1.0"
   },
   "devDependencies": {
+    "browserify": "^4.1.2",
     "chai": "^1.9.1",
     "co-mocha": "^0.0.2",
     "co-supertest": "0.0.4",
     "gulp": "^3.6.2",
     "gulp-bg": "0.0.5",
+    "gulp-clean": "^0.2.4",
     "gulp-jshint": "^1.5.5",
     "gulp-karma": "0.0.4",
     "gulp-mocha": "^0.4.1",
     "jshint-stylish": "^0.2.0",
+    "karma-chrome-launcher": "^0.1.3",
     "karma-mocha": "^0.1.3",
     "karma-sauce-launcher": "^0.2.8",
     "karma-story-reporter": "^0.2.2",
-    "karma-webpack": "^1.1.0",
     "koa": "^0.6.0",
     "mocha": "^1.18.2",
     "regeneratorify": "0.0.2",
-    "transform-loader": "^0.2.0",
-    "webpack": "^1.1.10"
+    "vinyl-source-stream": "^0.1.1"
   },
   "browser": {
     "./context.server": false

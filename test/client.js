@@ -11,32 +11,78 @@ teardown(function() {
   stack = []
 })
 
-// On the client-side, only routes that are responsible for changes between two
-// user interactions are executed. There are four sub-scenarios for client-side
-// execution that take different positions of the target route into account.
 suite('Client-Side', function() {
 
   test('initialize properly', function(done) {
     router.start('GET', '/a')
     router.on('started', function() {
       expect(window.history.state).to.be.ok
-      with (window.history.state) {
-        expect(method).to.equal('GET')
-        expect(path).to.equal('/a')
-      }
+      expect(window.history.state.method).to.equal('GET')
+      expect(window.history.state.path).to.equal('/a')
       expect(stack).to.have.lengthOf(0)
       done()
     })
   })
 
+  test('pushState', function(done) {
+    navigateTo('/a/b')(function() {
+      expect(window.location.pathname).to.equal('/a/b')
+
+      done()
+    })
+  })
+
+  test('redirect', function(done) {
+    var executed = false
+
+    var root = router.get('/target', function(cont) {
+      executed = true
+      cont()
+    })
+
+    root.get('/redirect', function(cont) {
+      cont.redirect('../')
+    })
+
+    router.on('navigated', function navigated(path) {
+      expect(path).to.equal('/target/redirect')
+      // expect(window.location.pathname).to.equal(expected || path)
+
+      router.removeListener('navigated', navigated)
+      router.removeAllListeners('pushState')
+
+      router.on('pushState', function navigated(path) {
+        expect(path).to.equal('/target')
+        expect(window.location.pathname).to.equal(path)
+
+        router.removeListener('pushState', navigated)
+
+        expect(stack).to.eql([
+          '/target',
+          '/target/redirect',
+          '/target'
+        ])
+
+        done()
+      })
+    })
+
+    navigateTo('/target/redirect')()
+  })
 })
 
 function navigateTo(path, method) {
   return function(done) {
-    router.on('navigated', function navigated(path) {
-      expect(path).to.equal(path)
+    router.on('pushState', function navigated(to) {
+      var pos
+      if ((pos = path.indexOf('?')) !== -1) {
+        path = path.substr(0, pos)
+      }
 
-      router.removeListener('navigated', navigated)
+      expect(path).to.equal(to)
+      expect(window.location.pathname).to.equal(path)
+
+      router.removeListener('pushState', navigated)
 
       done()
     })
@@ -67,4 +113,5 @@ Runnable.prototype.run = function (fn) {
 };
 
 
+require('./common')(router, navigateTo)
 require('./routing')(router, navigateTo)
